@@ -4,8 +4,8 @@ public class Arreglos {
     
     public static int cantidadElementos(int arr[]) {
         int cantidadElementos = 0;
-        for(int node : arr) {
-            if(node != 0) {
+        for (int node : arr) {
+            if (node != 0) {
                 cantidadElementos++; 
             }
         }
