@@ -6,6 +6,10 @@
         <title>Crear Oferta</title>
     </head>
     <body>
+        <%
+        int[] IDofertas = new int [1000];
+        
+        %>
         <h1>Hello World!</h1>
     </body>
 </html>
