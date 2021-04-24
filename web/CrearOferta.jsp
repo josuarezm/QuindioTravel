@@ -12,5 +12,10 @@
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             Connection con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-QLRT8H66:1433;databaseName=QuindioTravel;integratedSecurity=true");
         %>
+        <%
+            int[] IDofertas = new int [1000];
+        
+        %>
+        <h1>Hello World!</h1>
     </body>
 </html>
