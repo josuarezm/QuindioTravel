@@ -1,4 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page import="java.sql.*"%>
 <%@page import="Clases.*"%>
 <!DOCTYPE html>
 <html>
@@ -7,6 +8,10 @@
         <title>Ingreso</title>
     </head>
     <body>
+        <%
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            Connection con = DriverManager.getConnection("jdbc:sqlserver://LAPTOP-QLRT8H66:1433;databaseName=QuindioTravel;integratedSecurity=true");
+        %>
         <%
             int[] IDUsuarios = new int[100000000];
             IDUsuarios[0] = 1;
