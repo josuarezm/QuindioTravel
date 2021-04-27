@@ -39,72 +39,140 @@
                 }
                 if(!nombres.isEmpty() && !apellidos.isEmpty() && !nombreUsuario.isEmpty() && !correo.isEmpty() && !password1.isEmpty()
                     && !password2.isEmpty() && password1.equals(password2)) {
-                    PreparedStatement pst = con.prepareStatement("SELECT * FROM Usuarios");
+                    PreparedStatement pst = con.prepareStatement("SELECT IDUsuario FROM Usuarios WHERE IDUsuario<=10000000");
                     ResultSet rs = pst.executeQuery();
-                    int[] IDUsuarios = new int[20000000];
+                    
+                    int[] IDUsuarios = new int[10000000];
                     int i = 0;
                     while(rs.next()) {
                         IDUsuarios[i] = rs.getInt("IDUsuario");
                         i++;
                     }
-
-                    Usuario usuario = new Usuario();
-                    usuario.setNombres(nombres);
-                    usuario.setApellidos(apellidos);
-                    usuario.setNombreUsuario(nombreUsuario);
-                    usuario.setCorreo(correo);
-                    usuario.setContraseña(password1);
-                    usuario.setRol(rol);
-                    
+                                      
                     pst = con.prepareStatement("INSERT INTO Usuarios (Nombres, Apellidos, NombreUsuario, Correo, Contraseña, Rol) "
-                            + "VALUES ('"+usuario.getNombres()+"','"+usuario.getApellidos()+"','"+usuario.getNombreUsuario()+"','"+
-                            usuario.getCorreo()+"','"+usuario.getContraseña()+"',"+usuario.getRol()+")");
+                            + "VALUES ('"+nombres+"','"+apellidos+"','"+nombreUsuario+"','"+correo+"','"+password1+"',"+rol+")");
                     pst.executeUpdate();
                     con.close();  
         %>
-        <h1>10000000 Registros:</h1>
-        <p>ID Usuario:
-            <%
-                    int capacity = IDUsuarios.length;  
-                    int key = Arreglos.cantidadElementos(IDUsuarios) + 1;
+        <table style="border: 1px solid black">
+            <th style="border: 1px solid black">10.000 Registros (ID a insertar: 10.001)</th>
+            <th style="border: 1px solid black">100.000 Registros (ID a insertar: 100.001)</th>
+            <th style="border: 1px solid black">1.000.000 Registros (ID a insertar: 1.000.001)</th>
+            <th style="border: 1px solid black">10.000.000 Registros (ID a insertar: 10.000.001)</th>
+            <tr style="border: 1px solid black">
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    long tiempoInicio = 0;
+                    int[] IDUsuarios1 = new int[10001];
+                    for(i = 0; i < 10000; i++) {
+                        IDUsuarios1[i] = i+1;
+                    }
+                    int capacity = IDUsuarios1.length;
+                    int key = ++i;
                     int node = key - 1;
-                    usuario.setID(key);
-                    out.print(usuario.getID());
-            %>
-            Tiempo Registro:
-            <%
                     //Se mide el tiempo en nanosegundos, no obstante, se deben registrar varios refrescos de la página, para calcular el promedio
                     //Aunque, se requiere de comprobar la viabilidad para registros grandes.
-                    long tiempoInicio = System.nanoTime();
-                    node = Arreglos.insertarElemento(IDUsuarios, node, key, capacity);
-                    out.println(System.nanoTime() - tiempoInicio);
-                    
-                   
-                    /*for(int i = 0; i < node; i++) {
-                        if(IDUsuarios[i] == usuario.getID()) {
-                            out.print(System.nanoTime() - tiempoInicio); 
-                                if(i <= 10000) {
-                                    out.print("Tiempo de 10000 registros: " + (System.nanoTime() - tiempoInicio));
-                                } else if(i > 10000 && i <= 100000) {
-                                    out.print("Tiempo de 100000 registros: " + (System.nanoTime() - tiempoInicio));
-                                } else if(i > 100000 && i <= 1000000) {
-                                    out.print("Tiempo de 1000000 registros: " + (System.nanoTime() - tiempoInicio));
-                                } else if(i > 1000000 && i <= 10000000) {
-                                    out.print("Tiempo de 10000000 registros: " + (System.nanoTime() - tiempoInicio));
-                                }
-                            break;
-                        }  
-                    }*/
-                    for(i = 0; i < node; i++) {
-                        out.print(IDUsuarios[i] + ", ");
+                    tiempoInicio = System.nanoTime();
+                    Arreglos.insertarElemento(IDUsuarios1, node, key, capacity);
+                    out.print(System.nanoTime() - tiempoInicio);
+                    %>
+                </td>
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    int[] IDUsuarios2 = new int[100001];
+                    for(i = 0; i < 100000; i++) {
+                        IDUsuarios2[i] = i+1;
                     }
-                    response.setHeader("refresh", "2; url=index.jsp");
+                    capacity = IDUsuarios2.length;
+                    key = ++i;
+                    node = key - 1;
+                    tiempoInicio = System.nanoTime();
+                    Arreglos.insertarElemento(IDUsuarios2, node, key, capacity);
+                    out.print(System.nanoTime() - tiempoInicio);
+                    %>
+                </td>
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    int[] IDUsuarios3 = new int[1000001];
+                    for(i = 0; i < 1000000; i++) {
+                        IDUsuarios3[i] = i+1;
+                    }
+                    capacity = IDUsuarios3.length;
+                    key = ++i;
+                    node = key - 1;
+                    tiempoInicio = System.nanoTime();
+                    Arreglos.insertarElemento(IDUsuarios3, node, key, capacity);
+                    out.print(System.nanoTime() - tiempoInicio);
+                    %>
+                </td>
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    int[] IDUsuarios4 = new int[10000001];
+                    for(i = 0; i < 10000000; i++) {
+                        IDUsuarios4[i] = i+1;
+                    }
+                    capacity = IDUsuarios4.length;
+                    key = ++i;
+                    node = key - 1;
+                    tiempoInicio = System.nanoTime();
+                    Arreglos.insertarElemento(IDUsuarios4, node, key, capacity);
+                    out.print(System.nanoTime() - tiempoInicio);
+                    %>
+                </td>
+            </tr>
+            
+            <tr style="border: 1px solid black">
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    ListasDobles listaUsuarios1 = new ListasDobles();
+                    for(i = 0; i < 10000; i++) {
+                        listaUsuarios1.insertarElemento(i+1);
+                    }
+                    key = ++i;
+                    tiempoInicio = System.nanoTime();
+                    listaUsuarios1.insertarElemento(key);
+                    out.print(System.nanoTime() - tiempoInicio);
+                    %>
+                </td>
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    ListasDobles listaUsuarios2 = new ListasDobles();
+                    for(i = 0; i < 100000; i++) {
+                        listaUsuarios2.insertarElemento(i+1);
+                    }
+                    key = ++i;
+                    tiempoInicio = System.nanoTime();
+                    listaUsuarios2.insertarElemento(key);
+                    out.print(System.nanoTime() - tiempoInicio);
+                    %>
+                </td>
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    ListasDobles listaUsuarios3 = new ListasDobles();
+                    for(i = 0; i < 1000000; i++) {
+                        listaUsuarios3.insertarElemento(i+1);
+                    }
+                    key = ++i;
+                    tiempoInicio = System.nanoTime();
+                    listaUsuarios3.insertarElemento(key);
+                    out.print(System.nanoTime() - tiempoInicio);
+                    %>
+                </td>
+                <td style="border: 1px solid black">Tiempo: 
+                    <%
+                    ListasDobles listaUsuarios4 = new ListasDobles();
+                    for(i = 0; i < 10000000; i++) {
+                        listaUsuarios4.insertarElemento(i+1);
+                    }
+                    key = ++i;
+                    tiempoInicio = System.nanoTime();
+                    listaUsuarios4.insertarElemento(key);
+                    out.print(System.nanoTime() - tiempoInicio);
                 }
             }
-             
-            %>
-        </p>
-            
-        </p>
+                    %>
+                </td>
+            </tr>
+        </table>
     </body>
 </html>

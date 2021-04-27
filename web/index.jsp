@@ -9,7 +9,5 @@
         <a href="Registro.jsp">Registro</a>
         <a href="Ingreso.jsp">Ingreso</a>
         <a href="CrearOferta.jsp">Crear Oferta</a>
-        <a href="EditarOferta.jsp">Editar Oferta</a>
-        <a href="EliminarOferta.jsp">Eliminar Oferta</a>
     </body>
 </html>
