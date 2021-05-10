@@ -1,0 +1,13 @@
+.contenedorRegistro {
+    width: 50%;
+    overflow: hidden;
+    margin: auto;
+    margin-top: 10%;
+}
+body {
+    background-image: url("https://wallpaperaccess.com/full/291658.jpg");
+    background-size: cover;
+}
+label {
+    color: white;
+}
