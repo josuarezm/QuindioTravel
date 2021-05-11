@@ -5,7 +5,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Crear Oferta</title>
+        <title>Crear_Editar_Eliminar Oferta</title>
     </head>
     <body>
         <%
