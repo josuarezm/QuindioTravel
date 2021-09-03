@@ -12,4 +12,38 @@
 .labelRegistro {
     color: white;
 }
+#marcoInicio {
+    background-color:rgb(82, 250, 110);
+    width: 50%;
+    margin-right: auto;
+    margin-left: auto;
+    height: 300px;
+    border-radius: 34px;
+    margin-top: 5%;
+    padding: 1%;
+    overflow: hidden;
+}
+.buscar {
+    width: 25%;
+    float: right;
+    margin-right: 10%;
+}
+.buscar button {
+    background-color: orange; 
+    color: black; 
+    margin-left: 1%;
+}
+.usuario {
+    margin-top: -4%;
+    margin-left: 80%;
+}
+.usuario img {
+    margin-left: 60%;
+    margin-top: -30%;
+    
+}
+.usuario a img{
+    margin-left: 80%;
+    margin-top: -48%;
+}
 
