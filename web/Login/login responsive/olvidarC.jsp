@@ -14,7 +14,7 @@
 <body>
     <form class="formulario">
 
-        <h1>Recuperar<br>ContraseÃ±a</h1>
+        <h1>Recuperar<br>Contraseña</h1>
         <div class="contenedor">
 
 
